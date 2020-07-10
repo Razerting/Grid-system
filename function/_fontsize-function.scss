@@ -1,0 +1,47 @@
+// Fonts-size de 00 à 150
+// En em
+// x-fsize-00{font-size:0}
+// x-fsize-55{font-size:5.5em}
+// x-fsize-150{font-size:15em}
+
+// Exemple =>
+// x-fsize-05{font-size:0.5em} : mobile (tout quand rien d'autre)
+// x-fsize-05-m{font-size:0.5em} : tablette
+// x-fsize-05-l{font-size:0.5em} : desktop
+
+// x-fsize-t-50{font-size:5em} : mobile (tout quand rien d'autre)
+// x-fsize-t-50-m{font-size:5em} : tablette
+// x-fsize-t-50-l{font-size:5em} : desktop
+
+@for $i from 0 through 30 {
+
+    $iletter: $i*10/2;
+    @if $iletter < 10 {
+      $iletter: "0" + $iletter
+    }
+
+    $i: $i/2;
+    .x-fsize-#{$iletter}{
+        font-size: 1em * $i;
+    }
+    // Tablette
+    @media screen and (min-width: 768px) {
+        .x-fsize-#{$iletter}-m{
+            font-size: 1em * $i;
+        }
+    }
+
+    // Desktop
+    @media screen and (min-width: 1024px) {
+        .x-fsize-#{$iletter}-l{
+            font-size: 1em * $i;
+        }
+    }
+
+    // Desktop - Grand écran
+    @media screen and (min-width: 1440px) {
+        .x-fsize-#{$iletter}-xl{
+            font-size: 1em * $i;
+        }
+    }
+}
